@@ -3,25 +3,87 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		343264EB2248266100C9B2F7 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343264EA2248266100C9B2F7 /* Compatibility.swift */; };
+		343264ED224874CC00C9B2F7 /* CompatibilityFullscreenHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343264EC224874CC00C9B2F7 /* CompatibilityFullscreenHeaderCell.swift */; };
 		343E21AD2242E4AF0092D471 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21AC2242E4AF0092D471 /* AppDelegate.swift */; };
-		343E21AF2242E4AF0092D471 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21AE2242E4AF0092D471 /* ViewController.swift */; };
 		343E21B22242E4AF0092D471 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 343E21B02242E4AF0092D471 /* Main.storyboard */; };
 		343E21B42242E4B00092D471 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 343E21B32242E4B00092D471 /* Assets.xcassets */; };
 		343E21B72242E4B00092D471 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 343E21B52242E4B00092D471 /* LaunchScreen.storyboard */; };
+		343E21C12242E73C0092D471 /* SignsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21C02242E73C0092D471 /* SignsVC.swift */; };
+		343E21C32242E7EE0092D471 /* SignsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21C22242E7EE0092D471 /* SignsCell.swift */; };
+		343E21C92242E8590092D471 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21C52242E8590092D471 /* UIView+Layout.swift */; };
+		343E21CA2242E8590092D471 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21C62242E8590092D471 /* Extensions.swift */; };
+		343E21CB2242E8590092D471 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21C72242E8590092D471 /* VerticalStackView.swift */; };
+		343E21CE2242EBEC0092D471 /* BaseCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21CD2242EBEC0092D471 /* BaseCollectionVC.swift */; };
+		343E21D12242F9700092D471 /* Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21D02242F9700092D471 /* Sign.swift */; };
+		343E21D322430B340092D471 /* SignDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21D222430B340092D471 /* SignDetailsVC.swift */; };
+		343E21D522430BCD0092D471 /* SignDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21D422430BCD0092D471 /* SignDetailsCell.swift */; };
+		343E21D72243116B0092D471 /* BaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21D62243116A0092D471 /* BaseCollectionCell.swift */; };
+		343E21DD224318870092D471 /* Taurus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21DC224318870092D471 /* Taurus.swift */; };
+		343E21E2224430A90092D471 /* SignFullscreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21E1224430A90092D471 /* SignFullscreenVC.swift */; };
+		343E21E4224455190092D471 /* SignFullscreenHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21E3224455190092D471 /* SignFullscreenHeaderCell.swift */; };
+		343E21E62244567F0092D471 /* SignFullscreenDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21E52244567F0092D471 /* SignFullscreenDescriptionCell.swift */; };
+		343E21E82245AC890092D471 /* Leo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21E72245AC890092D471 /* Leo.swift */; };
+		343E21EA224695160092D471 /* Aries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21E9224695160092D471 /* Aries.swift */; };
+		343E21EE224699AA0092D471 /* Gemini.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21ED224699AA0092D471 /* Gemini.swift */; };
+		343E21F022469F400092D471 /* Cancer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21EF22469F400092D471 /* Cancer.swift */; };
+		343E21F22246A5220092D471 /* Sagittarius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21F12246A5220092D471 /* Sagittarius.swift */; };
+		343E21F42246AD9C0092D471 /* Capricorn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21F32246AD9C0092D471 /* Capricorn.swift */; };
+		343E21F62246FE3D0092D471 /* Virgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21F52246FE3D0092D471 /* Virgo.swift */; };
+		343E21F8224703030092D471 /* Libra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21F7224703030092D471 /* Libra.swift */; };
+		343E21FA224706140092D471 /* Scorpio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21F9224706140092D471 /* Scorpio.swift */; };
+		343E21FC224709F30092D471 /* Aquarius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21FB224709F30092D471 /* Aquarius.swift */; };
+		343E21FE22470CFC0092D471 /* Pisces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21FD22470CFC0092D471 /* Pisces.swift */; };
+		343E22002247EFE20092D471 /* CompatibilityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21FF2247EFE20092D471 /* CompatibilityCell.swift */; };
+		34BA8D8D224B0CB300E2823C /* LaunchScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34BA8D8C224B0CB300E2823C /* LaunchScreen.xcassets */; };
+		34BA8D8F224B0CCA00E2823C /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34BA8D8E224B0CCA00E2823C /* AppIcon.xcassets */; };
+		CF58AC7C24B7E24CBA615AF1 /* Pods_ZodiacZ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 340FA11B7A9B5A50FD2682D8 /* Pods_ZodiacZ.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		17CF80019852A5AFA706B02A /* Pods-ZodiacZ.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZodiacZ.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZodiacZ/Pods-ZodiacZ.release.xcconfig"; sourceTree = "<group>"; };
+		340FA11B7A9B5A50FD2682D8 /* Pods_ZodiacZ.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZodiacZ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		343264EA2248266100C9B2F7 /* Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compatibility.swift; sourceTree = "<group>"; };
+		343264EC224874CC00C9B2F7 /* CompatibilityFullscreenHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibilityFullscreenHeaderCell.swift; sourceTree = "<group>"; };
 		343E21A92242E4AF0092D471 /* ZodiacZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZodiacZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		343E21AC2242E4AF0092D471 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		343E21AE2242E4AF0092D471 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		343E21B12242E4AF0092D471 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		343E21B32242E4B00092D471 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		343E21B62242E4B00092D471 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		343E21B82242E4B00092D471 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		343E21C02242E73C0092D471 /* SignsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignsVC.swift; sourceTree = "<group>"; };
+		343E21C22242E7EE0092D471 /* SignsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignsCell.swift; sourceTree = "<group>"; };
+		343E21C52242E8590092D471 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
+		343E21C62242E8590092D471 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		343E21C72242E8590092D471 /* VerticalStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
+		343E21CD2242EBEC0092D471 /* BaseCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionVC.swift; sourceTree = "<group>"; };
+		343E21D02242F9700092D471 /* Sign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sign.swift; sourceTree = "<group>"; };
+		343E21D222430B340092D471 /* SignDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignDetailsVC.swift; sourceTree = "<group>"; };
+		343E21D422430BCD0092D471 /* SignDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignDetailsCell.swift; sourceTree = "<group>"; };
+		343E21D62243116A0092D471 /* BaseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionCell.swift; sourceTree = "<group>"; };
+		343E21DC224318870092D471 /* Taurus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Taurus.swift; sourceTree = "<group>"; };
+		343E21E1224430A90092D471 /* SignFullscreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignFullscreenVC.swift; sourceTree = "<group>"; };
+		343E21E3224455190092D471 /* SignFullscreenHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignFullscreenHeaderCell.swift; sourceTree = "<group>"; };
+		343E21E52244567F0092D471 /* SignFullscreenDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignFullscreenDescriptionCell.swift; sourceTree = "<group>"; };
+		343E21E72245AC890092D471 /* Leo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leo.swift; sourceTree = "<group>"; };
+		343E21E9224695160092D471 /* Aries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aries.swift; sourceTree = "<group>"; };
+		343E21ED224699AA0092D471 /* Gemini.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gemini.swift; sourceTree = "<group>"; };
+		343E21EF22469F400092D471 /* Cancer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancer.swift; sourceTree = "<group>"; };
+		343E21F12246A5220092D471 /* Sagittarius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sagittarius.swift; sourceTree = "<group>"; };
+		343E21F32246AD9C0092D471 /* Capricorn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capricorn.swift; sourceTree = "<group>"; };
+		343E21F52246FE3D0092D471 /* Virgo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Virgo.swift; sourceTree = "<group>"; };
+		343E21F7224703030092D471 /* Libra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Libra.swift; sourceTree = "<group>"; };
+		343E21F9224706140092D471 /* Scorpio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scorpio.swift; sourceTree = "<group>"; };
+		343E21FB224709F30092D471 /* Aquarius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aquarius.swift; sourceTree = "<group>"; };
+		343E21FD22470CFC0092D471 /* Pisces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pisces.swift; sourceTree = "<group>"; };
+		343E21FF2247EFE20092D471 /* CompatibilityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibilityCell.swift; sourceTree = "<group>"; };
+		34BA8D8C224B0CB300E2823C /* LaunchScreen.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LaunchScreen.xcassets; sourceTree = "<group>"; };
+		34BA8D8E224B0CCA00E2823C /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
+		B2F5E092208A157E8506C732 /* Pods-ZodiacZ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZodiacZ.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZodiacZ/Pods-ZodiacZ.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +91,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF58AC7C24B7E24CBA615AF1 /* Pods_ZodiacZ.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		211CBD8F96568315BBB471E6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B2F5E092208A157E8506C732 /* Pods-ZodiacZ.debug.xcconfig */,
+				17CF80019852A5AFA706B02A /* Pods-ZodiacZ.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		343E21A02242E4AF0092D471 = {
 			isa = PBXGroup;
 			children = (
 				343E21AB2242E4AF0092D471 /* ZodiacZ */,
 				343E21AA2242E4AF0092D471 /* Products */,
+				211CBD8F96568315BBB471E6 /* Pods */,
+				E44DF7ED5FCDCD737939F4ED /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +128,99 @@
 		343E21AB2242E4AF0092D471 /* ZodiacZ */ = {
 			isa = PBXGroup;
 			children = (
+				343E21DA224313040092D471 /* Base */,
+				343E21E0224430830092D471 /* SignFullscreen */,
+				343E21D9224312E90092D471 /* Detail */,
+				343E21D8224312D00092D471 /* Home */,
 				343E21AC2242E4AF0092D471 /* AppDelegate.swift */,
-				343E21AE2242E4AF0092D471 /* ViewController.swift */,
+				343E21CF2242F94D0092D471 /* Model */,
+				343E21C42242E8360092D471 /* Helper */,
 				343E21B02242E4AF0092D471 /* Main.storyboard */,
+				34BA8D8E224B0CCA00E2823C /* AppIcon.xcassets */,
+				34BA8D8C224B0CB300E2823C /* LaunchScreen.xcassets */,
 				343E21B32242E4B00092D471 /* Assets.xcassets */,
 				343E21B52242E4B00092D471 /* LaunchScreen.storyboard */,
 				343E21B82242E4B00092D471 /* Info.plist */,
 			);
 			path = ZodiacZ;
+			sourceTree = "<group>";
+		};
+		343E21C42242E8360092D471 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				343E21C62242E8590092D471 /* Extensions.swift */,
+				343E21C52242E8590092D471 /* UIView+Layout.swift */,
+				343E21C72242E8590092D471 /* VerticalStackView.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		343E21CF2242F94D0092D471 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				343E21D02242F9700092D471 /* Sign.swift */,
+				343264EA2248266100C9B2F7 /* Compatibility.swift */,
+				343E21DC224318870092D471 /* Taurus.swift */,
+				343E21E72245AC890092D471 /* Leo.swift */,
+				343E21E9224695160092D471 /* Aries.swift */,
+				343E21ED224699AA0092D471 /* Gemini.swift */,
+				343E21EF22469F400092D471 /* Cancer.swift */,
+				343E21F12246A5220092D471 /* Sagittarius.swift */,
+				343E21F32246AD9C0092D471 /* Capricorn.swift */,
+				343E21F52246FE3D0092D471 /* Virgo.swift */,
+				343E21F7224703030092D471 /* Libra.swift */,
+				343E21F9224706140092D471 /* Scorpio.swift */,
+				343E21FB224709F30092D471 /* Aquarius.swift */,
+				343E21FD22470CFC0092D471 /* Pisces.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		343E21D8224312D00092D471 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				343E21C22242E7EE0092D471 /* SignsCell.swift */,
+				343E21C02242E73C0092D471 /* SignsVC.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		343E21D9224312E90092D471 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				343E21D422430BCD0092D471 /* SignDetailsCell.swift */,
+				343E21FF2247EFE20092D471 /* CompatibilityCell.swift */,
+				343E21D222430B340092D471 /* SignDetailsVC.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		343E21DA224313040092D471 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				343E21D62243116A0092D471 /* BaseCollectionCell.swift */,
+				343E21CD2242EBEC0092D471 /* BaseCollectionVC.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		343E21E0224430830092D471 /* SignFullscreen */ = {
+			isa = PBXGroup;
+			children = (
+				343E21E3224455190092D471 /* SignFullscreenHeaderCell.swift */,
+				343264EC224874CC00C9B2F7 /* CompatibilityFullscreenHeaderCell.swift */,
+				343E21E52244567F0092D471 /* SignFullscreenDescriptionCell.swift */,
+				343E21E1224430A90092D471 /* SignFullscreenVC.swift */,
+			);
+			path = SignFullscreen;
+			sourceTree = "<group>";
+		};
+		E44DF7ED5FCDCD737939F4ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				340FA11B7A9B5A50FD2682D8 /* Pods_ZodiacZ.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +230,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 343E21BB2242E4B00092D471 /* Build configuration list for PBXNativeTarget "ZodiacZ" */;
 			buildPhases = (
+				8F60B828131B6C972396FC5B /* [CP] Check Pods Manifest.lock */,
 				343E21A52242E4AF0092D471 /* Sources */,
 				343E21A62242E4AF0092D471 /* Frameworks */,
 				343E21A72242E4AF0092D471 /* Resources */,
+				4B74E61F8C286573E998B395 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -122,6 +283,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34BA8D8F224B0CCA00E2823C /* AppIcon.xcassets in Resources */,
+				34BA8D8D224B0CB300E2823C /* LaunchScreen.xcassets in Resources */,
 				343E21B72242E4B00092D471 /* LaunchScreen.storyboard in Resources */,
 				343E21B42242E4B00092D471 /* Assets.xcassets in Resources */,
 				343E21B22242E4AF0092D471 /* Main.storyboard in Resources */,
@@ -130,13 +293,82 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4B74E61F8C286573E998B395 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZodiacZ/Pods-ZodiacZ-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZodiacZ/Pods-ZodiacZ-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZodiacZ/Pods-ZodiacZ-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F60B828131B6C972396FC5B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZodiacZ-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		343E21A52242E4AF0092D471 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				343E21AF2242E4AF0092D471 /* ViewController.swift in Sources */,
+				343E21F22246A5220092D471 /* Sagittarius.swift in Sources */,
+				343E21C32242E7EE0092D471 /* SignsCell.swift in Sources */,
+				343E21DD224318870092D471 /* Taurus.swift in Sources */,
+				343E21E2224430A90092D471 /* SignFullscreenVC.swift in Sources */,
+				343E21C92242E8590092D471 /* UIView+Layout.swift in Sources */,
+				343E21F62246FE3D0092D471 /* Virgo.swift in Sources */,
+				343264ED224874CC00C9B2F7 /* CompatibilityFullscreenHeaderCell.swift in Sources */,
+				343E21EA224695160092D471 /* Aries.swift in Sources */,
+				343E21D12242F9700092D471 /* Sign.swift in Sources */,
+				343E21D522430BCD0092D471 /* SignDetailsCell.swift in Sources */,
+				343E21E62244567F0092D471 /* SignFullscreenDescriptionCell.swift in Sources */,
+				343E21FE22470CFC0092D471 /* Pisces.swift in Sources */,
+				343E21EE224699AA0092D471 /* Gemini.swift in Sources */,
+				343E21F022469F400092D471 /* Cancer.swift in Sources */,
+				343E21C12242E73C0092D471 /* SignsVC.swift in Sources */,
+				343E21F42246AD9C0092D471 /* Capricorn.swift in Sources */,
+				343E21E82245AC890092D471 /* Leo.swift in Sources */,
+				343E21F8224703030092D471 /* Libra.swift in Sources */,
 				343E21AD2242E4AF0092D471 /* AppDelegate.swift in Sources */,
+				343E21FA224706140092D471 /* Scorpio.swift in Sources */,
+				343E21CB2242E8590092D471 /* VerticalStackView.swift in Sources */,
+				343264EB2248266100C9B2F7 /* Compatibility.swift in Sources */,
+				343E21FC224709F30092D471 /* Aquarius.swift in Sources */,
+				343E21D322430B340092D471 /* SignDetailsVC.swift in Sources */,
+				343E21D72243116B0092D471 /* BaseCollectionCell.swift in Sources */,
+				343E22002247EFE20092D471 /* CompatibilityCell.swift in Sources */,
+				343E21CA2242E8590092D471 /* Extensions.swift in Sources */,
+				343E21CE2242EBEC0092D471 /* BaseCollectionVC.swift in Sources */,
+				343E21E4224455190092D471 /* SignFullscreenHeaderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,8 +512,10 @@
 		};
 		343E21BC2242E4B00092D471 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2F5E092208A157E8506C732 /* Pods-ZodiacZ.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VEU89C364Z;
 				INFOPLIST_FILE = ZodiacZ/Info.plist;
@@ -291,15 +525,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cubi.ZodiacZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		343E21BD2242E4B00092D471 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17CF80019852A5AFA706B02A /* Pods-ZodiacZ.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VEU89C364Z;
 				INFOPLIST_FILE = ZodiacZ/Info.plist;
@@ -309,8 +546,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cubi.ZodiacZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
