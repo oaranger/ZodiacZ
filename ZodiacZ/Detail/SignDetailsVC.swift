@@ -10,9 +10,7 @@ import UIKit
 import GoogleMobileAds
 
 class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, GADBannerViewDelegate {
-    
-    let cellId = "cellId"
-    let cellCompatibility = "cellCompatibility"
+
     var sign: Sign
     var adBanner = GADBannerView(adSize: kGADAdSizeBanner)
     
@@ -36,7 +34,7 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
         adBanner.rootViewController = self
         adBanner.delegate = self
         let request = GADRequest()
-        // request.testDevices = ["0e0424f2376e4f55496b45bd0462653f"];
+//        request.testDevices = ["0e0424f2376e4f55496b45bd0462653f"];
         adBanner.load(request)
         
         let currentWindow: UIWindow? = UIApplication.shared.keyWindow
@@ -57,6 +55,14 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
         adBanner.isHidden = true
     }
     
+    let activityIndicatorView: UIActivityIndicatorView = {
+        let aiv = UIActivityIndicatorView(style: .whiteLarge)
+        aiv.color = .black
+        aiv.startAnimating()
+        aiv.hidesWhenStopped = true
+        return aiv
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(blurVisualEffectView)
@@ -64,8 +70,82 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
         blurVisualEffectView.alpha = 0
         collectionView.register(SignDetailsCell.self, forCellWithReuseIdentifier: Sign.CellType.normal.rawValue)
         collectionView.register(CompatibilityCell.self, forCellWithReuseIdentifier: Sign.CellType.compatibility.rawValue)
-        collectionView.backgroundColor = #colorLiteral(red: 0.9713277284, green: 0.9713277284, blue: 0.9713277284, alpha: 1)
+        collectionView.register(ForecastCell.self, forCellWithReuseIdentifier: Sign.CellType.forecast.rawValue)
+        collectionView.backgroundColor = #colorLiteral(red: 0.738836453, green: 0.738836453, blue: 0.738836453, alpha: 1)
+        fetchForecastData()
         loadAdsBanner()
+    }
+    
+    var forecastData: [String: Forecast] = [:]
+    
+    fileprivate func fetchForecastData() {
+        print("Fetching JSON Data")
+        
+        var todayData: Forecast?
+        var weekData: Forecast?
+        var monthData: Forecast?
+        var yearData: Forecast?
+        
+        let dispatchGroup = DispatchGroup()
+
+        dispatchGroup.enter()
+        Service.shared.fetchTodayForecast(for: self.sign.type) { (data, error) in
+            if let error = error {
+                print("Failed to fetch today forecast data", error)
+                return
+            }
+            dispatchGroup.leave()
+            todayData = data!
+        }
+        
+        dispatchGroup.enter()
+        Service.shared.fetchWeekForecast(for: sign.type) { (data, error) in
+            if let error = error {
+                print("Failed to fetch weekly forecast data", error)
+                return
+            }
+            dispatchGroup.leave()
+            weekData = data!
+        }
+
+        dispatchGroup.enter()
+        Service.shared.fetchMonthForecast(for: sign.type) { (data, error) in
+            if let error = error {
+                print("Failed to fetch monthly forecast data", error)
+                return
+            }
+            dispatchGroup.leave()
+            monthData = data!
+        }
+
+        dispatchGroup.enter()
+        Service.shared.fetchYearForecast(for: sign.type) { (data, error) in
+            if let error = error {
+                print("Failed to fetch yearly forecast data", error)
+                return
+            }
+            dispatchGroup.leave()
+            yearData = data!
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            print("completed your dispatch group")
+            if let todayData = todayData {
+                self.forecastData["today"] = todayData
+            }
+            if let weekData = weekData {
+                self.forecastData["week"] = weekData
+            }
+            if let monthData = monthData {
+                self.forecastData["month"] = monthData
+            }
+            if let yearData = yearData {
+                self.forecastData["year"] = yearData
+            }
+            self.activityIndicatorView.stopAnimating()
+            
+            self.collectionView.reloadData()
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -73,18 +153,30 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellId = self.sign.getGroup()[indexPath.item].cellType.rawValue
+        let cellType = self.sign.getGroup()[indexPath.item].cellType
+        let cellId = cellType.rawValue
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! BaseCollectionCell
         cell.sign = self.sign.getGroup()[indexPath.item]
+        if cellType == .forecast {
+            cell.addSubview(activityIndicatorView)
+            activityIndicatorView.fillSuperview()
+            cell.isUserInteractionEnabled = !activityIndicatorView.isAnimating
+        }
         return cell        
     }
     
     static let normalSize: CGFloat = 500
-    static let smallCell: CGFloat = 300
+    static let compatibilitySize: CGFloat = 300
+    static let forecastSize: CGFloat = 480
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellType = self.sign.getGroup()[indexPath.item].cellType
-        let height = (cellType == .normal) ? SignDetailsVC.normalSize : SignDetailsVC.smallCell
+        var height: CGFloat = 0
+        switch cellType {
+        case .normal: height = SignDetailsVC.normalSize
+        case .compatibility: height = SignDetailsVC.compatibilitySize
+        case .forecast: height = SignDetailsVC.forecastSize
+        }
         return .init(width: view.frame.width - 64, height: height)
     }
     
@@ -111,6 +203,7 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
     
     fileprivate func setupSingleAppFullscreenController(_ indexPath: IndexPath) {
         let signFullscreenVC =  SignFullscreenVC()
+        signFullscreenVC.forecastData = self.forecastData
         signFullscreenVC.sign = self.sign.getGroup()[indexPath.item]
         signFullscreenVC.dismissHandler = {
             self.handleAppFullscreenDismissal()

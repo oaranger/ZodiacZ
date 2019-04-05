@@ -15,13 +15,13 @@ class SignsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Zodiac Signs"
+//        title = "Zodiac Signs"
         collectionView.backgroundColor = .white
         collectionView.register(SignsCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.isScrollEnabled = false
-        let backButton = UIBarButtonItem()
-        backButton.title = "Zodiac Signs"
-        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+//        let backButton = UIBarButtonItem()
+//        backButton.title = "Zodiac Signs"
+//        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
         if UIDevice.current.screenType != .iPhones_5_5s_5c_SE {
             setupRateButton()

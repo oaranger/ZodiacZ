@@ -15,7 +15,7 @@ class SignFullscreenDescriptionCell: UITableViewCell {
         button.setImage(#imageLiteral(resourceName: "share_button").withRenderingMode(.alwaysOriginal), for: .normal)
         button.layer.cornerRadius = 8
         button.clipsToBounds = true
-        button.layer.backgroundColor = #colorLiteral(red: 0.7090422144, green: 0.6409538497, blue: 0.9686274529, alpha: 1)  // #colorLiteral(red: 0.01858329214, green: 0.4816223383, blue: 1, alpha: 1)
+        button.layer.backgroundColor = #colorLiteral(red: 0.7090422144, green: 0.6409538497, blue: 0.9686274529, alpha: 1)
         button.contentEdgeInsets = UIEdgeInsets.init(top: 2, left: 16, bottom: 2, right: 16)
         return button
     }()

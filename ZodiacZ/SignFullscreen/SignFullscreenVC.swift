@@ -12,6 +12,14 @@ class SignFullscreenVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     let tableView = UITableView(frame: .zero, style: .plain)
     
+    let activityIndicatorView: UIActivityIndicatorView = {
+        let aiv = UIActivityIndicatorView(style: .whiteLarge)
+        aiv.color = .black
+        aiv.startAnimating()
+        aiv.hidesWhenStopped = true
+        return aiv
+    }()
+    
     let closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "close_button"), for: .normal)
@@ -39,12 +47,39 @@ class SignFullscreenVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         setupCloseButton()       
     }
     
-    @objc func handleTap(gesture: UITapGestureRecognizer) {
+    fileprivate func parseForecastData(for forecastData: [String: Forecast]) -> [String] {
+        guard let sign = sign else { return [] }
+        var items: [String] = []
+        forecastData.forEach { (key, forecast) in
+            if let horoscope = forecast.horoscope {
+                if let date = forecast.date {
+                    items.append("Today, \(date)\n\n\(horoscope)\n\n")
+                }
+                if let week = forecast.week {
+                    items.append("This week\n\n\(horoscope)\n\n")
+                }
+                if let month = forecast.month {
+                    items.append("This month, \(month)\n\n\(horoscope)\n\n")
+                }
+                if let year = forecast.year {
+                    items.append("This year, \(year)\n\n\(horoscope)\n\n")
+                }
+            }
+        }
+        return items
+    }
+    
+    @objc func handleShare(gesture: UITapGestureRecognizer) {
+        guard let sign = sign else { return }
         guard let signDetailsVC = navigationController?.viewControllers[1] as? SignDetailsVC else { return }
         signDetailsVC.adBanner.isHidden = true
+        var items: [String] = []
+        if sign.cellType == .forecast {
+            items = parseForecastData(for: self.forecastData)
+        } else {
+            items = [sign.title + "\n\n" + ((sign.trait == nil) ? (sign.description) : (sign.trait! + "\n\n" + sign.description))]
+        }
         
-        guard let sign = sign else { return }
-        let items = [sign.title + "\n\n" + ((sign.trait == nil) ? (sign.description) : (sign.trait! + "\n\n" + sign.description))]
         let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
         ac.completionWithItemsHandler = {(_,_,_,_) in
             signDetailsVC.adBanner.isHidden = false
@@ -75,33 +110,47 @@ class SignFullscreenVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let sign = sign else { return 0 }
         if indexPath.row == 0 {
-            return (sign?.cellType == .normal) ? SignDetailsVC.normalSize : SignDetailsVC.smallCell
+            switch sign.cellType {
+            case .normal: return SignDetailsVC.normalSize
+            case .compatibility: return SignDetailsVC.compatibilitySize
+            case .forecast: return SignDetailsVC.forecastSize
+            }
         }
         return UITableView.automaticDimension
     }
     
+    var forecastData: [String: Forecast] = [:]
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let sign = sign else { return UITableViewCell() }
         if indexPath.item == 0 {
-            guard let sign = sign else { return UITableViewCell() }
-            if sign.cellType == .normal {
-                let headerCell = SignFullscreenHeaderCell()
-                headerCell.signDetailsCelll.sign = self.sign
-                headerCell.signDetailsCelll.backgroundView = nil
-                headerCell.signDetailsCelll.descriptionLabel.isHidden = true
-                return headerCell
-            } else {
+            if sign.cellType == .compatibility {
                 let headerCell = CompatibilityFullscreenHeaderCell()
                 headerCell.compatibilityCell.sign = self.sign
                 headerCell.compatibilityCell.backgroundView = nil
                 headerCell.compatibilityCell.descriptionLabel.isHidden = true
                 return headerCell
+            } else {
+                let headerCell = SignFullscreenHeaderCell()
+                headerCell.signDetailsCelll.sign = self.sign
+                headerCell.signDetailsCelll.backgroundView = nil
+                headerCell.signDetailsCelll.descriptionLabel.isHidden = true
+                return headerCell
             }
         }
-        let cell = SignFullscreenDescriptionCell()
-        cell.sign = self.sign
-        cell.shareButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
-        return cell
+        if sign.cellType == .forecast && !forecastData.isEmpty {
+            let cell = SignFullscreenForecastDescriptionCell()
+            cell.forecastData = self.forecastData
+            cell.shareButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShare(gesture:))))
+            return cell
+        } else {
+            let cell = SignFullscreenDescriptionCell()
+            cell.sign = self.sign
+            cell.shareButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShare(gesture:))))
+            return cell
+        }
     }
     
     deinit {

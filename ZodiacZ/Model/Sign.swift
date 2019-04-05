@@ -11,14 +11,14 @@ import UIKit
 public struct Sign {
     
     enum CellType: String {
-        case normal, compatibility
+        case forecast, normal, compatibility
     }
     
     let type: SignType
     let title: String
     let image1: String
     let image2: String?
-    let description: String
+    var description: String
     var trait: String?
     let cellType: CellType
 }
@@ -174,13 +174,14 @@ extension Sign {
         }
         
         let general = Sign(type: signType, title: "\(signType)", image1: "\(signType.rawValue.lowercased())2", image2: nil, description: allInfo["general"] ?? "", trait: allInfo["trait"] ?? "", cellType: .normal)
+        let forecast = Sign(type: signType, title: "2019", image1: "pig_\(signType.rawValue.lowercased())", image2: nil, description: "Love | Career\nDaily | Weekly | Monthly | Yearly", trait: nil, cellType: .forecast)
         let man = Sign(type: signType, title: "\(signType) Man", image1: "\(signType.rawValue.lowercased())_man", image2: nil, description: allInfo["man"] ?? "", trait: nil, cellType: .normal)
         let woman = Sign(type: signType, title: "\(signType) Woman", image1: "\(signType.rawValue.lowercased())_woman", image2: nil, description: allInfo["woman"] ?? "", trait: nil, cellType: .normal)
         let child = Sign(type: signType, title: "\(signType) Child", image1: "\(signType.rawValue.lowercased())_child", image2: nil, description: allInfo["child"] ?? "", trait: nil, cellType: .normal)
         let famous = Sign(type: signType, title: "Famous \(signType)", image1: "famous", image2: nil, description: allInfo["famous"] ?? "", trait: nil, cellType: .normal)
         let planet = Sign(type: signType, title: "\(signType) Ruling Planet", image1: "\(signType.rawValue.lowercased())_planet", image2: nil, description: allInfo["planet"] ?? "", trait: nil, cellType: .normal)
         
-        return [general, man, woman, child, famous, planet]
+        return [general, forecast, man, woman, child, famous, planet]
     }
     
     func getGroup() -> [Sign] {
