@@ -15,19 +15,23 @@ class SignsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        title = "Zodiac Signs"
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = SignDetailsVC.themeColor //.white
         collectionView.register(SignsCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.isScrollEnabled = false
-//        let backButton = UIBarButtonItem()
-//        backButton.title = "Zodiac Signs"
-//        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        let backButton = UIBarButtonItem()
+        backButton.tintColor = SignDetailsVC.themeColor //.white
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        view.backgroundColor = .clear
         
         if UIDevice.current.screenType != .iPhones_5_5s_5c_SE {
             setupRateButton()
         }
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return signs.count
     }
@@ -66,8 +70,8 @@ class SignsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout {
         rateButtonContainerView.layer.cornerRadius = 16
         rateButtonContainerView.clipsToBounds = true
         view.addSubview(rateButtonContainerView)
-        rateButtonContainerView.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: edgeSpace, bottom: 64, right: edgeSpace), size: .init(width: 0, height: 40))
-        rateButtonContainerView.backgroundColor = #colorLiteral(red: 0.7090422144, green: 0.6409538497, blue: 0.9686274529, alpha: 1)
+        rateButtonContainerView.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: edgeSpace, bottom: 80, right: edgeSpace), size: .init(width: 0, height: 40))
+        rateButtonContainerView.backgroundColor = #colorLiteral(red: 0.5952938199, green: 0.7993078828, blue: 0.9904734492, alpha: 1) // #colorLiteral(red: 0.7090422144, green: 0.6409538497, blue: 0.9686274529, alpha: 1)
         
         let rateButton = UIButton(title: "Rate this app !")
         rateButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 26)

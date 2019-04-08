@@ -16,6 +16,7 @@ class CompatibilityFullscreenHeaderCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(compatibilityCell)
         compatibilityCell.fillSuperview()
+        backgroundColor = SignDetailsVC.themeColor
     }
     
     required init?(coder aDecoder: NSCoder) {

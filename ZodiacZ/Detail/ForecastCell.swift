@@ -40,6 +40,9 @@ class ForecastCell: BaseCollectionCell {
         stackView.alignment = .center
         self.topConstraint = stackView.topAnchor.constraint(equalTo: topAnchor, constant: 24)
         self.topConstraint.isActive = true
+        
+        titleLabel.textColor = .white
+        descriptionLabel.textColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {

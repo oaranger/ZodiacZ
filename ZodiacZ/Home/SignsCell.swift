@@ -10,7 +10,7 @@ import UIKit
 
 class SignsCell: UICollectionViewCell {
     
-    let imageView = UIImageView(cornerRadius: 16)
+    let imageView = UIImageView(cornerRadius: 0)
     let nameLabel = UILabel(text: "Taurus", font: .boldSystemFont(ofSize: 16))
     let dateLabel = UILabel(text: "April 20 - May 20", font: .systemFont(ofSize: 12))
     
@@ -25,7 +25,7 @@ class SignsCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor(white: 0.7, alpha: 0.3)
-        layer.cornerRadius = 8
+        layer.cornerRadius = 16
         layer.shadowOpacity = 0.2
         layer.shadowRadius = 10
         layer.shadowOffset = .init(width: 0, height: 10)
@@ -42,6 +42,7 @@ class SignsCell: UICollectionViewCell {
         addSubview(stackView)
         stackView.fillSuperview(padding: .init(top: 4, left: 4, bottom: 4, right: 4))
         stackView.alignment = .center
+        backgroundColor = .white
     }
     
     override var isHighlighted: Bool {

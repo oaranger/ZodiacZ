@@ -27,7 +27,7 @@ class SignDetailsCell: BaseCollectionCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = 16
-        let imageContainerView = UIView()        
+        let imageContainerView = UIView()
         imageContainerView.addSubview(imageView)
         imageView.centerInSuperview(size: .init(width: 260, height: 320))
         imageView.contentMode = .scaleAspectFit
@@ -36,10 +36,13 @@ class SignDetailsCell: BaseCollectionCell {
             titleLabel, imageContainerView, descriptionLabel
             ], spacing: 4)
         addSubview(stackView)
-        stackView.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 24, bottom: 24, right: 24))
+        stackView.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 20, bottom: 24, right: 20))
         stackView.alignment = .center
         self.topConstraint = stackView.topAnchor.constraint(equalTo: topAnchor, constant: 24)
         self.topConstraint.isActive = true
+        
+        titleLabel.textColor = .white
+        descriptionLabel.textColor = .white        
     }
     
     required init?(coder aDecoder: NSCoder) {

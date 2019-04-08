@@ -8,15 +8,37 @@
 
 import UIKit
 import GoogleMobileAds
+import AVFoundation
 
 class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, GADBannerViewDelegate {
 
     var sign: Sign
     var adBanner = GADBannerView(adSize: kGADAdSizeBanner)
+    var player: AVAudioPlayer?
+    static var themeColor: UIColor = #colorLiteral(red: 0.1800789303, green: 0.5379061442, blue: 0.5860366434, alpha: 1)
     
     init(sign: Sign) {
         self.sign = sign
         super.init()
+    }
+    
+    func playSound(for soundFile: String) {
+        guard let url = Bundle.main.url(forResource: soundFile, withExtension: "wav") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
+            
+            guard let player = player else { return }
+            
+            player.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
    
     let blurVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
@@ -48,6 +70,8 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         view.backgroundColor = .clear
+        
+        fetchForecastData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,7 +95,7 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
         collectionView.register(SignDetailsCell.self, forCellWithReuseIdentifier: Sign.CellType.normal.rawValue)
         collectionView.register(CompatibilityCell.self, forCellWithReuseIdentifier: Sign.CellType.compatibility.rawValue)
         collectionView.register(ForecastCell.self, forCellWithReuseIdentifier: Sign.CellType.forecast.rawValue)
-        collectionView.backgroundColor = #colorLiteral(red: 0.738836453, green: 0.738836453, blue: 0.738836453, alpha: 1)
+        collectionView.backgroundColor = .white // SignDetailsVC.themeColor
         fetchForecastData()
         loadAdsBanner()
     }
@@ -80,6 +104,8 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
     
     fileprivate func fetchForecastData() {
         print("Fetching JSON Data")
+        
+        forecastData.removeAll()
         
         var todayData: Forecast?
         var weekData: Forecast?
@@ -142,9 +168,8 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
             if let yearData = yearData {
                 self.forecastData["year"] = yearData
             }
-            self.activityIndicatorView.stopAnimating()
-            
             self.collectionView.reloadData()
+            self.activityIndicatorView.stopAnimating()
         }
     }
     
@@ -177,11 +202,11 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
         case .compatibility: height = SignDetailsVC.compatibilitySize
         case .forecast: height = SignDetailsVC.forecastSize
         }
-        return .init(width: view.frame.width - 64, height: height)
+        return .init(width: view.frame.width - 50, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 32
+        return 16
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -193,6 +218,7 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
     }
     
     fileprivate func showSingleAppFullScreen(indexPath: IndexPath) {
+//        playSound(for: "open2")
         // setup AppFullscreenController() instance
         setupSingleAppFullscreenController(indexPath)
         // setup fullscreen in its starting position
@@ -299,6 +325,7 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
     }
     
     @objc fileprivate func handleAppFullscreenDismissal() {
+//        playSound(for: "close")
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
             
             self.signFullscreenVC.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)

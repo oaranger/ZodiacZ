@@ -44,6 +44,9 @@ class CompatibilityCell: BaseCollectionCell {
         stackView.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 24, bottom: 24, right: 24))
         self.topConstraint = stackView.topAnchor.constraint(equalTo: topAnchor, constant: 24)
         self.topConstraint.isActive = true
+        
+        titleLabel.textColor = .white
+        descriptionLabel.textColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {

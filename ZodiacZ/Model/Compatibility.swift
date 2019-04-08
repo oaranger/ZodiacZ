@@ -315,7 +315,7 @@ struct Compatibility {
 
     Aries Woman and Pisces Man
 
-    This relationship is a little difficult to cope up with. Though both, an Aries woman as well as a Piscean man, are romantic to the core, they may face adjustment problems in other areas. She will have to control her aggressiveness if she wants to win over his love, since he is very sensitive. At the same time, he will have to accept her independence and let her have her freedom. On the other hand, he will delight her with his wistful, mystifying nature and she will inspire him to move ahead in life and get what he wants. But then, love is known to transcend all differences. Isn't it?Read more at http://www.iloveindia.com/astrology/compatibility/aries/aries-pisces.html#1KCvQmoRXkZtDOVj.99
+    This relationship is a little difficult to cope up with. Though both, an Aries woman as well as a Piscean man, are romantic to the core, they may face adjustment problems in other areas. She will have to control her aggressiveness if she wants to win over his love, since he is very sensitive. At the same time, he will have to accept her independence and let her have her freedom. On the other hand, he will delight her with his wistful, mystifying nature and she will inspire him to move ahead in life and get what he wants. But then, love is known to transcend all differences. Isn't it?
     """
     
     static let gemini_gemini: String = """

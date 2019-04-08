@@ -23,7 +23,8 @@ class SignFullscreenVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     let closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "close_button"), for: .normal)
-        button.tintColor = #colorLiteral(red: 0.7090422144, green: 0.6409538497, blue: 0.9686274529, alpha: 1)
+//        button.tintColor = SignDetailsVC.themeColor // #colorLiteral(red: 0.7090422144, green: 0.6409538497, blue: 0.9686274529, alpha: 1)
+        button.tintColor = .white
         return button
     }()
     
@@ -32,6 +33,8 @@ class SignFullscreenVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        view.backgroundColor = SignDetailsVC.themeColor
+        tableView.backgroundColor = SignDetailsVC.themeColor
         view.clipsToBounds = true
         view.addSubview(tableView)
         tableView.fillSuperview()
@@ -44,12 +47,14 @@ class SignFullscreenVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         let height = UIApplication.shared.statusBarFrame.height + 50
         tableView.contentInset = .init(top: 0, left: 0, bottom: height, right: 0)
         
-        setupCloseButton()       
+        setupCloseButton()
+        
+        
     }
     
     fileprivate func parseForecastData(for forecastData: [String: Forecast]) -> [String] {
         guard let sign = sign else { return [] }
-        var items: [String] = []
+        var items: [String] = [sign.type.rawValue + "\n\n"]
         forecastData.forEach { (key, forecast) in
             if let horoscope = forecast.horoscope {
                 if let date = forecast.date {

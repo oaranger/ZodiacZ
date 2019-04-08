@@ -16,6 +16,8 @@ class SignFullscreenHeaderCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(signDetailsCelll)
         signDetailsCelll.fillSuperview()
+        
+        backgroundColor = SignDetailsVC.themeColor
     }
     
     required init?(coder aDecoder: NSCoder) {
