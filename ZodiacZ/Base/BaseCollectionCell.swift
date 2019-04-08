@@ -17,7 +17,7 @@ class BaseCollectionCell: UICollectionViewCell {
         self.backgroundView = UIView()
         addSubview(self.backgroundView!)
         self.backgroundView?.backgroundColor = SignDetailsVC.themeColor // .white
-        self.backgroundView?.layer.cornerRadius = 20
+        self.backgroundView?.layer.cornerRadius = 16
         self.backgroundView?.fillSuperview()
 //        self.backgroundView?.layer.shadowOpacity = 0.2
 //        self.backgroundView?.layer.shadowRadius = 10

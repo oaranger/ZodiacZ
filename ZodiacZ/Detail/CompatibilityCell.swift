@@ -22,10 +22,10 @@ class CompatibilityCell: BaseCollectionCell {
     var topConstraint: NSLayoutConstraint!
     var stackView: VerticalStackView!
     var imageStackView: UIStackView!
-    let titleLabel = UILabel(text: "Utilizing your Time", font: .boldSystemFont(ofSize: 24), numberOfLines: 2)
+    let titleLabel = UILabel(text: "", font: .boldSystemFont(ofSize: 24), numberOfLines: 2)
     let imageView1 = UIImageView(cornerRadius: 16)
     let imageView2 = UIImageView(cornerRadius: 16)
-    let descriptionLabel = UILabel(text: "All the tools and apps you need to intelligently organize your life the right way.", font: .systemFont(ofSize: 16), numberOfLines: 2)
+    let descriptionLabel = UILabel(text: "", font: .systemFont(ofSize: 16), numberOfLines: 2)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,9 +35,7 @@ class CompatibilityCell: BaseCollectionCell {
         imageStackView = UIStackView(arrangedSubviews: [imageView1, imageView2])
         imageStackView.spacing = 16
         imageStackView.distribution = .fillEqually
-        imageStackView.backgroundColor = .red
         imageStackView.centerInSuperview(size: .init(width: 250, height: 140))
-        imageStackView.backgroundColor = .purple
         stackView = VerticalStackView(arrangedSubviews: [titleLabel, imageStackView, descriptionLabel], spacing: 4)
         addSubview(stackView)
         stackView.alignment = .center

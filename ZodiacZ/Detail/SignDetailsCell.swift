@@ -20,9 +20,9 @@ class SignDetailsCell: BaseCollectionCell {
     
     var topConstraint: NSLayoutConstraint!
     var stackView: VerticalStackView!
-    let titleLabel = UILabel(text: "Utilizing your Time", font: .boldSystemFont(ofSize: 28), numberOfLines: 2)
+    let titleLabel = UILabel(text: "", font: .boldSystemFont(ofSize: 28), numberOfLines: 2)
     let imageView = UIImageView(image: #imageLiteral(resourceName: "libra"))
-    let descriptionLabel = UILabel(text: "All the tools and apps you need to intelligently organize your life the right way.", font: .systemFont(ofSize: 16), numberOfLines: 3)
+    let descriptionLabel = UILabel(text: "", font: .systemFont(ofSize: 16), numberOfLines: 3)
       
     override init(frame: CGRect) {
         super.init(frame: frame)

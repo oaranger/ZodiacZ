@@ -10,73 +10,55 @@ import UIKit
 import GoogleMobileAds
 import AVFoundation
 
-class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, GADBannerViewDelegate {
+class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, GADInterstitialDelegate {
 
     var sign: Sign
-    var adBanner = GADBannerView(adSize: kGADAdSizeBanner)
     var player: AVAudioPlayer?
     static var themeColor: UIColor = #colorLiteral(red: 0.1800789303, green: 0.5379061442, blue: 0.5860366434, alpha: 1)
+    var interstitial: GADInterstitial!
+    var pressCount: Int = 0
     
     init(sign: Sign) {
         self.sign = sign
         super.init()
     }
     
-    func playSound(for soundFile: String) {
-        guard let url = Bundle.main.url(forResource: soundFile, withExtension: "wav") else { return }
-        
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
-            
-            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
-            
-            guard let player = player else { return }
-            
-            player.play()
-            
-        } catch let error {
-            print(error.localizedDescription)
-        }
+    // Interstitial Ads
+    
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-6518422758055129/3213199273")
+        interstitial.delegate = self
+        interstitial.load(GADRequest())
+        return interstitial
+    }
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        interstitial = createAndLoadInterstitial()
     }
    
+    fileprivate func showInterstitialAds() {
+        print("press count ",pressCount)
+        if pressCount == 3 {
+            if interstitial.isReady {
+                interstitial.present(fromRootViewController: self)
+            } else {
+                print("Ad wasn't ready")
+            }
+            pressCount = 0
+        } else {
+            pressCount += 1
+        }
+    }
+    
     let blurVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    deinit {
-        print("Deinitialization SignDetailsVC")
-    }
-    
-    func loadAdsBanner() {
-        adBanner.adUnitID = "ca-app-pub-6518422758055129/3644849669"
-        adBanner.rootViewController = self
-        adBanner.delegate = self
-        let request = GADRequest()
-//        request.testDevices = ["0e0424f2376e4f55496b45bd0462653f"];
-        adBanner.load(request)
-        
-        let currentWindow: UIWindow? = UIApplication.shared.keyWindow
-        currentWindow?.addSubview(adBanner)
-        adBanner.fillSuperview(padding: .init(top: view.frame.height - adBanner.bounds.size.height, left: (view.frame.width - adBanner.bounds.size.width) / 2, bottom: 0, right: 0))
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         view.backgroundColor = .clear
-        
         fetchForecastData()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        adBanner.isHidden = true
     }
     
     let activityIndicatorView: UIActivityIndicatorView = {
@@ -95,18 +77,15 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
         collectionView.register(SignDetailsCell.self, forCellWithReuseIdentifier: Sign.CellType.normal.rawValue)
         collectionView.register(CompatibilityCell.self, forCellWithReuseIdentifier: Sign.CellType.compatibility.rawValue)
         collectionView.register(ForecastCell.self, forCellWithReuseIdentifier: Sign.CellType.forecast.rawValue)
-        collectionView.backgroundColor = .white // SignDetailsVC.themeColor
+        collectionView.backgroundColor = .white
         fetchForecastData()
-        loadAdsBanner()
+        interstitial = createAndLoadInterstitial()
     }
     
     var forecastData: [String: Forecast] = [:]
     
     fileprivate func fetchForecastData() {
-        print("Fetching JSON Data")
-        
         forecastData.removeAll()
-        
         var todayData: Forecast?
         var weekData: Forecast?
         var monthData: Forecast?
@@ -155,7 +134,6 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
         }
 
         dispatchGroup.notify(queue: .main) {
-            print("completed your dispatch group")
             if let todayData = todayData {
                 self.forecastData["today"] = todayData
             }
@@ -198,9 +176,9 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
         let cellType = self.sign.getGroup()[indexPath.item].cellType
         var height: CGFloat = 0
         switch cellType {
-        case .normal: height = SignDetailsVC.normalSize
-        case .compatibility: height = SignDetailsVC.compatibilitySize
-        case .forecast: height = SignDetailsVC.forecastSize
+            case .normal: height = SignDetailsVC.normalSize
+            case .compatibility: height = SignDetailsVC.compatibilitySize
+            case .forecast: height = SignDetailsVC.forecastSize
         }
         return .init(width: view.frame.width - 50, height: height)
     }
@@ -213,12 +191,14 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
         return UIEdgeInsets.init(top: 0, left: 0, bottom: 32, right: 0)
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {        
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        showInterstitialAds()
         showSingleAppFullScreen(indexPath: indexPath)
     }
     
+    // Fullscreen
+    
     fileprivate func showSingleAppFullScreen(indexPath: IndexPath) {
-//        playSound(for: "open2")
         // setup AppFullscreenController() instance
         setupSingleAppFullscreenController(indexPath)
         // setup fullscreen in its starting position
@@ -271,12 +251,9 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
     }
     
     fileprivate func beginAnimationAppFullscreen() {
-        
         navigationController?.isNavigationBarHidden = true
-        
         // we are using frames for animation, frames are not reliable enough for animation
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
-
             self.blurVisualEffectView.alpha = 1
             self.anchoredConstraint?.top?.constant = 0
             self.anchoredConstraint?.leading?.constant = 0
@@ -289,14 +266,12 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
             guard let cell = self.signFullscreenVC.tableView.cellForRow(at: [0,0]) as? SignFullscreenHeaderCell else { return }
             cell.signDetailsCelll.topConstraint.constant = 48
             cell.layoutIfNeeded()
-
         }, completion: nil)
     }
     
     var signFullscreenBeginOffset: CGFloat = 0
     
     @objc fileprivate func handleDrag(gesture: UIPanGestureRecognizer) {
-        
         if gesture.state == .began {
             signFullscreenBeginOffset = signFullscreenVC.tableView.contentOffset.y
         }
@@ -325,7 +300,6 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
     }
     
     @objc fileprivate func handleAppFullscreenDismissal() {
-//        playSound(for: "close")
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
             
             self.signFullscreenVC.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
@@ -357,5 +331,13 @@ class SignDetailsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, UIGes
             self.signFullscreenVC.removeFromParent()
             self.collectionView.isUserInteractionEnabled = true
         })
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        print("Deinitialization SignDetailsVC")
     }
 }

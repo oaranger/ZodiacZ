@@ -146,7 +146,7 @@ extension Sign {
     
     func getCompatibilityGroup(_ signType: SignType) -> [Sign] {
         var signs = [Sign]()
-        SignType.allCases.map { (eachType) in
+        let _ = SignType.allCases.map { (eachType) in
             let title = "\(type.rawValue) - \(eachType.rawValue)"
             let image1 = "\(type.rawValue.lowercased())2"
             let image2 = "\(eachType.rawValue.lowercased())2"

@@ -23,7 +23,6 @@ class SignFullscreenVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     let closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "close_button"), for: .normal)
-//        button.tintColor = SignDetailsVC.themeColor // #colorLiteral(red: 0.7090422144, green: 0.6409538497, blue: 0.9686274529, alpha: 1)
         button.tintColor = .white
         return button
     }()
@@ -46,10 +45,7 @@ class SignFullscreenVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView.contentInsetAdjustmentBehavior = .never
         let height = UIApplication.shared.statusBarFrame.height + 50
         tableView.contentInset = .init(top: 0, left: 0, bottom: height, right: 0)
-        
         setupCloseButton()
-        
-        
     }
     
     fileprivate func parseForecastData(for forecastData: [String: Forecast]) -> [String] {
@@ -60,7 +56,7 @@ class SignFullscreenVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 if let date = forecast.date {
                     items.append("Today, \(date)\n\n\(horoscope)\n\n")
                 }
-                if let week = forecast.week {
+                if let _ = forecast.week {
                     items.append("This week\n\n\(horoscope)\n\n")
                 }
                 if let month = forecast.month {
@@ -76,8 +72,8 @@ class SignFullscreenVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @objc func handleShare(gesture: UITapGestureRecognizer) {
         guard let sign = sign else { return }
-        guard let signDetailsVC = navigationController?.viewControllers[1] as? SignDetailsVC else { return }
-        signDetailsVC.adBanner.isHidden = true
+        guard let signsVC = navigationController?.viewControllers[0] as? SignsVC else { return }
+        signsVC.adBanner.isHidden = true
         var items: [String] = []
         if sign.cellType == .forecast {
             items = parseForecastData(for: self.forecastData)
@@ -87,7 +83,7 @@ class SignFullscreenVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
         ac.completionWithItemsHandler = {(_,_,_,_) in
-            signDetailsVC.adBanner.isHidden = false
+            signsVC.adBanner.isHidden = false
         }
         present(ac, animated: true)
     }

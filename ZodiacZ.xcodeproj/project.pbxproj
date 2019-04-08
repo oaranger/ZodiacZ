@@ -11,9 +11,6 @@
 		3420987D2256402900BC5F15 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420987C2256402900BC5F15 /* Forecast.swift */; };
 		3420987F225670CC00BC5F15 /* SignFullscreenForecastDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420987E225670CC00BC5F15 /* SignFullscreenForecastDescriptionCell.swift */; };
 		342098812256739600BC5F15 /* ForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342098802256739600BC5F15 /* ForecastCell.swift */; };
-		3420988422570F6400BC5F15 /* close.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3420988322570F6400BC5F15 /* close.wav */; };
-		3420988622570F9700BC5F15 /* open.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3420988522570F9700BC5F15 /* open.wav */; };
-		342098882257146A00BC5F15 /* open2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 342098872257146A00BC5F15 /* open2.wav */; };
 		343264EB2248266100C9B2F7 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343264EA2248266100C9B2F7 /* Compatibility.swift */; };
 		343264ED224874CC00C9B2F7 /* CompatibilityFullscreenHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343264EC224874CC00C9B2F7 /* CompatibilityFullscreenHeaderCell.swift */; };
 		343E21AD2242E4AF0092D471 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343E21AC2242E4AF0092D471 /* AppDelegate.swift */; };
@@ -58,9 +55,6 @@
 		3420987C2256402900BC5F15 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		3420987E225670CC00BC5F15 /* SignFullscreenForecastDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignFullscreenForecastDescriptionCell.swift; sourceTree = "<group>"; };
 		342098802256739600BC5F15 /* ForecastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCell.swift; sourceTree = "<group>"; };
-		3420988322570F6400BC5F15 /* close.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = close.wav; sourceTree = "<group>"; };
-		3420988522570F9700BC5F15 /* open.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = open.wav; sourceTree = "<group>"; };
-		342098872257146A00BC5F15 /* open2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = open2.wav; sourceTree = "<group>"; };
 		343264EA2248266100C9B2F7 /* Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compatibility.swift; sourceTree = "<group>"; };
 		343264EC224874CC00C9B2F7 /* CompatibilityFullscreenHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibilityFullscreenHeaderCell.swift; sourceTree = "<group>"; };
 		343E21A92242E4AF0092D471 /* ZodiacZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZodiacZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,16 +123,6 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		3420988222570F5600BC5F15 /* Sound */ = {
-			isa = PBXGroup;
-			children = (
-				3420988522570F9700BC5F15 /* open.wav */,
-				342098872257146A00BC5F15 /* open2.wav */,
-				3420988322570F6400BC5F15 /* close.wav */,
-			);
-			path = Sound;
-			sourceTree = "<group>";
-		};
 		343E21A02242E4AF0092D471 = {
 			isa = PBXGroup;
 			children = (
@@ -160,7 +144,6 @@
 		343E21AB2242E4AF0092D471 /* ZodiacZ */ = {
 			isa = PBXGroup;
 			children = (
-				3420988222570F5600BC5F15 /* Sound */,
 				3420987922563D4800BC5F15 /* Service */,
 				343E21DA224313040092D471 /* Base */,
 				343E21E0224430830092D471 /* SignFullscreen */,
@@ -321,12 +304,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				34BA8D8F224B0CCA00E2823C /* AppIcon.xcassets in Resources */,
-				3420988422570F6400BC5F15 /* close.wav in Resources */,
 				34BA8D8D224B0CB300E2823C /* LaunchScreen.xcassets in Resources */,
 				343E21B72242E4B00092D471 /* LaunchScreen.storyboard in Resources */,
-				3420988622570F9700BC5F15 /* open.wav in Resources */,
 				343E21B42242E4B00092D471 /* Assets.xcassets in Resources */,
-				342098882257146A00BC5F15 /* open2.wav in Resources */,
 				343E21B22242E4AF0092D471 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
