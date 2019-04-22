@@ -38,7 +38,7 @@ class SignsVC: BaseCollectionVC, UICollectionViewDelegateFlowLayout, GADBannerVi
         adBanner.rootViewController = self
         adBanner.delegate = self
         let request = GADRequest()
-        request.testDevices = ["0e0424f2376e4f55496b45bd0462653f"];
+//        request.testDevices = ["0e0424f2376e4f55496b45bd0462653f"];
         adBanner.load(request)
         let currentWindow: UIWindow? = UIApplication.shared.keyWindow
         currentWindow?.addSubview(adBanner)
